@@ -1,19 +1,14 @@
 # Cpp-Template-GTest-on-Gitlab
 
-GTest - HowTo
-*************
+## GTest - HowTo with CMake
 
-Compiling the tests
-===================
+### Compiling the tests
 
 In order to clone the submodule Googletest in ./include/ folder for the first time, execute the following in it:
 
 .. code-block:: console
 
     > git submodule update --init --recursive
-
-C++ Unit Tests with GoogleTests
--------------------------------
 
 Run the commands:
 
@@ -31,8 +26,7 @@ Or:
     > cd tests
     > ./runUnitTests
 
-Adding a new class test to CMake
-================================
+### Adding a new class test to CMake
 
 Make sure there is an executable source with the following instructions:
 
@@ -78,13 +72,11 @@ add also in the `CMakeLists.txt`:
 
 In your Terminal, you can now call `make runUnitTests` to run your tests.
 
-Writing the new class test
-==========================
+### Writing the new class test
 
 In your file `CMakeLists.txt`, you can now create your test suite.
 
-Simple TEST
------------
+#### Simple TEST
 
 .. code-block:: cpp
 
@@ -122,8 +114,7 @@ Once this skeleton is in place, you can add as many tests as you need for the me
 
 If some of your tests require the exact same data configuration for each test, you can use test fixtures.
 
-Test Fixtures: TEST_F
-----------------------
+#### Test Fixtures: TEST_F
 
 For each test, the data configuration declared in the `SetUp` will be reset to those values,
 no matter what has been modified in the previous tests: there is no need for global variables.
@@ -171,8 +162,7 @@ Those SetUp values can also be inherited.
 
     Warning: GoogleTest prevents the mix of TEST and TEST_F!
 
-Test Fixtures: The constructor vs the SetUp function
-----------------------------------------------------
+#### Test Fixtures: The constructor vs the SetUp function
 
 Each time a test is called, the constructor and the SetUp will be called
 - and if variables had their values set in one of those functions,
@@ -182,8 +172,7 @@ Then why using the SetUp function? It is safer if an exception is thrown
 by one of the functions called inside of it.
 The constructor of the test class will not be able to dealt properly with it, and this may lead to crash.
 
-Options
-=======
+### Options
 
 For more examples, please see the GitHub for GoogleTest, in particular their "samples" folder:
 `GitHub samples <https://github.com/google/googletest/tree/master/googletest/samples>`_

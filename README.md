@@ -38,17 +38,17 @@ Make sure there is an executable source with the following instructions:
 
 .. code-block:: cpp
 
-// file: launch_tests.cpp
-#include "gtest/gtest.h"      // COMPULSORY
+    // file: launch_tests.cpp 
+    #include "gtest/gtest.h"      // COMPULSORY
 
-using namespace std;
-using namespace testing;
+    using namespace std;
+    using namespace testing;
 
-int main(int argc, char **argv)
-{
-testing::InitGoogleTest(&argc, argv); // COMPULSORY
-return RUN_ALL_TESTS();    // COMPULSORY, called only ONCE
-}
+    int main(int argc, char **argv)
+    {
+      testing::InitGoogleTest(&argc, argv); // COMPULSORY
+      return RUN_ALL_TESTS();    // COMPULSORY, called only ONCE
+    }
 
 In the `CMakeLists.txt`, you can add the following lines:
 
@@ -62,9 +62,9 @@ Declare your dependencies and then add those to the GoogleTests library by using
 
 .. code-block:: cmake
 
-target_link_libraries(runUnitTests PUBLIC ${CMAKE_PROJECT_NAME}
-gtest
-gtest_main)
+    target_link_libraries(runUnitTests PUBLIC ${CMAKE_PROJECT_NAME}
+                          gtest
+                          gtest_main)
 
 Add `pthread` to the list if your code run with multi-threading.
 
@@ -73,8 +73,8 @@ add also in the `CMakeLists.txt`:
 
 .. code-block:: cmake
 
-add_test(NAME runUnitTests
-COMMAND runUnitTests_cmd)
+    add_test(NAME runUnitTests
+    COMMAND runUnitTests_cmd)
 
 In your Terminal, you can now call `make runUnitTests` to run your tests.
 
@@ -88,38 +88,35 @@ Simple TEST
 
 .. code-block:: cpp
 
-// file: myClass_UT.cpp
-#include "gtest/gtest.h" // COMPULSORY for each new file
-#include "myClass.cpp"
+    // file: myClass_UT.cpp
+    #include "gtest/gtest.h" // COMPULSORY for each new file
+    #include "myClass.cpp"
 
-using namespace testing;
+    using namespace testing;
 
-class myClassTest : public ::testing::Test
-{
-protected:
-myClassTest() {}      // COMPULSORY
-~myClassTest() {}     // COMPULSORY
-};
+    class myClassTest : public ::testing::Test
+    {
+      protected:
+      myClassTest() {}      // COMPULSORY
+      ~myClassTest() {}     // COMPULSORY
+    };
 
-TEST(myClassTest, worksWithFunc1)
-{
-// Declare your variables here
-// Make use of myClass::func1
-// Compare the resulting value(s) from your expectation(s)
-ASSERT_EQ(resulting_value, expected_value)
-<< "Msg to display in case of failure for func1";
-}
+    TEST(myClassTest, worksWithFunc1)
+    {
+      // Declare your variables here
+      // Make use of myClass::func1
+      // Compare the resulting value(s) from your expectation(s)
+      ASSERT_EQ(resulting_value, expected_value) << "Msg to display in case of failure for func1";
+    }
 
-TEST(myClassTest, worksWithFunc2)
-{
-// Declare your variables here
-// Make use of myClass::func2
-// If you already have a boolean:
-ASSERT_TRUE(myBool)
-<< "Msg to display in case of failure for func2";
-ASSERT_FALSE(myBool)
-<< "Msg to display in case of failure for func2";
-}
+    TEST(myClassTest, worksWithFunc2)
+    {
+      // Declare your variables here
+      // Make use of myClass::func2
+      // If you already have a boolean:
+      ASSERT_TRUE(myBool) << "Msg to display in case of failure for func2";
+      ASSERT_FALSE(myBool) << "Msg to display in case of failure for func2";
+    }
 
 Once this skeleton is in place, you can add as many tests as you need for the member functions of myClass.
 
@@ -134,16 +131,16 @@ Those SetUp values can also be inherited.
 
 .. code-block:: cpp
 
-// file: myClass_UT.cpp
-#include "gtest/gtest.h" // COMPULSORY for each new file
-#include "myClass.cpp"
+    // file: myClass_UT.cpp
+    #include "gtest/gtest.h" // COMPULSORY for each new file
+    #include "myClass.cpp"
 
-using namespace testing;
+    using namespace testing;
 
-class myClassTest : public ::testing::Test
-{
-protected:
-myClassTest() {}      // COMPULSORY
+    class myClassTest : public ::testing::Test
+    {
+      protected:
+      myClassTest() {}      // COMPULSORY
 
      // Declare your variable(s) here
      myClass obj1;
@@ -159,17 +156,16 @@ myClassTest() {}      // COMPULSORY
      virtual void TearDown() override {}
 
      ~myClassTest() {}     // COMPULSORY
-};
+    };
 
-// TEST_F = Test Fixture, which is allowed to used values in SetUp
-TEST_F(myClassTest, worksWithFunc1)
-{
-// Declare your other variables here
-// Make use of myClass::func1 with obj1 e.g.
-// Compare the resulting value(s) from your expectation(s)
-EXPECT_EQ(resulting_value, expected_value)
-<< "Msg to display in case of failure for func1";
-}
+    // TEST_F = Test Fixture, which is allowed to used values in SetUp
+    TEST_F(myClassTest, worksWithFunc1)
+    {
+      // Declare your other variables here
+      // Make use of myClass::func1 with obj1 e.g.
+      // Compare the resulting value(s) from your expectation(s)
+      EXPECT_EQ(resulting_value, expected_value) << "Msg to display in case of failure for func1";
+    }
 
 .. note::
 

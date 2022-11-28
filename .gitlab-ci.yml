@@ -1,0 +1,27 @@
+image: "debian:bullseye"
+
+default:
+  tags:
+    - g-test
+
+# Need to install: Doxygen (+graphviz)
+before_script:
+  - apt-get update
+  - apt install -y python3-pip cmake git wget
+
+stages:
+  - unit-test
+      
+gtest:
+  stage: unit-test
+  script:
+# Adding googletest files
+    - cd ./include
+    - git submodule update --init --recursive
+# Compiling the tests
+    - cd ../; mkdir build; cd ./build; cmake .. && make runUnitTests
+    - cd ./tests; ./runUnitTests --gtest_output="xml:report.xml"
+  artifacts:
+    when: always
+    reports:
+      junit: ./build/tests/report.xml

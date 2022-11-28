@@ -1,0 +1,33 @@
+# List of files, folders, extensions to ignore
+# For Git during commit
+
+# build output
+./build/
+build/
+./cmake-build-debug/
+./CMakeCache.txt
+./CMakeFiles/
+
+# Python files
+./src/python/__pycache__/
+./tests/unit_tests/python/__pycache__/
+
+# Documentation files: *.html, *.xml, etc...
+./docs/doxygen*
+docs/doxygen*
+./docs/sphinx/html/
+docs/sphinx/html/
+
+# Forbidden files
+*.pdf
+*.html
+*.xml
+
+# IDE junk
+.idea/*
+.vscode/
+*.tcl
+*.swp
+
+#Virtual Environment
+./venv/*

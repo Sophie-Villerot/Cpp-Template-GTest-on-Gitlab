@@ -6,32 +6,31 @@
 
 In order to clone the submodule Googletest in ./include/ folder for the first time, execute the following in it:
 
-.. code-block:: console
-
+```
     > git submodule update --init --recursive
+```
 
 Run the commands:
 
-.. code-block:: console
-
+```
     > cd build
     > cmake .. && make
     > make test
+```
 
 Or:
 
-.. code-block:: console
-
+```
     > cmake .. && make
     > cd tests
     > ./runUnitTests
+```
 
 ### Adding a new class test to CMake
 
 Make sure there is an executable source with the following instructions:
 
-.. code-block:: cpp
-
+```
     // file: launch_tests.cpp 
     #include "gtest/gtest.h"      // COMPULSORY
 
@@ -43,32 +42,33 @@ Make sure there is an executable source with the following instructions:
       testing::InitGoogleTest(&argc, argv); // COMPULSORY
       return RUN_ALL_TESTS();    // COMPULSORY, called only ONCE
     }
+```
 
 In the `CMakeLists.txt`, you can add the following lines:
 
-.. code-block:: cmake
-
+```
     add_executable(runUnitTests launch_tests.cpp myClass_UT.cpp)
+```
 
 where the file `myClass\_UT.cpp` will contain your new tests.
 
 Declare your dependencies and then add those to the GoogleTests library by using:
 
-.. code-block:: cmake
-
+```
     target_link_libraries(runUnitTests PUBLIC ${CMAKE_PROJECT_NAME}
                           gtest
                           gtest_main)
+```
 
 Add `pthread` to the list if your code run with multi-threading.
 
 In order to create a special command that will run only your new executable `runUnitTests`,
 add also in the `CMakeLists.txt`:
 
-.. code-block:: cmake
-
+```
     add_test(NAME runUnitTests
     COMMAND runUnitTests_cmd)
+```
 
 In your Terminal, you can now call `make runUnitTests` to run your tests.
 
@@ -78,8 +78,7 @@ In your file `CMakeLists.txt`, you can now create your test suite.
 
 #### Simple TEST
 
-.. code-block:: cpp
-
+```
     // file: myClass_UT.cpp
     #include "gtest/gtest.h" // COMPULSORY for each new file
     #include "myClass.cpp"
@@ -109,6 +108,7 @@ In your file `CMakeLists.txt`, you can now create your test suite.
       ASSERT_TRUE(myBool) << "Msg to display in case of failure for func2";
       ASSERT_FALSE(myBool) << "Msg to display in case of failure for func2";
     }
+```
 
 Once this skeleton is in place, you can add as many tests as you need for the member functions of myClass.
 
@@ -120,8 +120,7 @@ For each test, the data configuration declared in the `SetUp` will be reset to t
 no matter what has been modified in the previous tests: there is no need for global variables.
 Those SetUp values can also be inherited.
 
-.. code-block:: cpp
-
+```
     // file: myClass_UT.cpp
     #include "gtest/gtest.h" // COMPULSORY for each new file
     #include "myClass.cpp"
@@ -157,10 +156,9 @@ Those SetUp values can also be inherited.
       // Compare the resulting value(s) from your expectation(s)
       EXPECT_EQ(resulting_value, expected_value) << "Msg to display in case of failure for func1";
     }
+```
 
-.. note::
-
-    Warning: GoogleTest prevents the mix of TEST and TEST_F!
+ ***Warning: GoogleTest prevents the mix of TEST and TEST_F!***
 
 #### Test Fixtures: The constructor vs the SetUp function
 
@@ -182,14 +180,11 @@ There are more advanced use of GoogleTest, described here: `GTest Advanced <http
 For more variations on `ASSERT` and `EXPECT` commands, please see the Google Tests documentation at:
 `GTest Assertions <https://google.github.io/googletest/reference/assertions.html>`_
 
-.. note::
-
-    Warning: It should be noted that:
+**Warning: It should be noted that:**
      - If the condition verified by an `ASSERT` call turns out to be false, the test will stop
        and be considered a failure, and the next one will be called.
      - If another condition, this time verified by an `EXPECT` call,
        turns out to be false, then the remainder of the test will not be checked further -
        however, the test will not be considered as failing.
 
-     **Therefore, we privilege using `EXPECT`,
-     so any manual destructor can still be called from the remainder of the test.**
+ **Therefore, we privilege using `EXPECT`, so any manual destructor can still be called from the remainder of the test.**

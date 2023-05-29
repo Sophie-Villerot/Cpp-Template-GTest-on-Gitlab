@@ -10,6 +10,7 @@ project(gtestTemplate
         DESCRIPTION "C++ Template project for GTest, using CMake"
         LANGUAGES CXX)
 
+# Add folders where Find instructions are located
 list(APPEND CMAKE_MODULE_PATH "${CMAKE_CURRENT_LIST_DIR}/cmake"
                               "${CMAKE_CURRENT_LIST_DIR}/docs/sphinx/cmake")
 
@@ -28,12 +29,9 @@ if(CMAKE_PROJECT_NAME STREQUAL PROJECT_NAME)
     add_compile_options(-Wextra)
     add_compile_options(-lstdc++)
     add_compile_options($ENV{MAKELESS_GCC_OPT})
-    #add_compile_options(-pedantic-errors)
-    #add_compile_options(-pedantic)
-    #add_compile_options(-Wconversion)
-    #add_compile_options(-Wsign-conversion)
-    # Refine w/ = unused-parameter, sign-compare, unused-parameter, type-limits, maybe-uninitialized
-    #add_compile_options(-Werror)
+    add_compile_options(-Werror)
+
+    add_compile_definitions(BIG_INT_SELECT_GMP)
 
     # Let's nicely support folders in IDEs
     set_property(GLOBAL PROPERTY USE_FOLDERS ON)
@@ -51,6 +49,28 @@ if (${CMAKE_SOURCE_DIR} STREQUAL ${CMAKE_BINARY_DIR})
                          Please make a new directory (called a build directory)
                          and run CMake from there. You may need to remove CMakeCache.txt." )
 endif()
+
+# Check if the system is macOS (using the APPLE variable) and set the GMP library name accordingly.
+# This ensures compatibility with macOS systems when searching for the GMP library.
+if(APPLE)
+    set(GMP_LIB_NAME "libgmp.dylib")
+else()
+    set(GMP_LIB_NAME "libgmp.so")
+endif()
+
+find_library(GMP_LIB_PATH ${GMP_LIB_NAME} REQUIRED)
+get_filename_component(GMP_LIB_DIR ${GMP_LIB_PATH} DIRECTORY)
+
+set(CPPTEMPLATE_DEP_LIBS
+    gmp
+    gmpxx)
+
+set(CPPTEMPLATE_SRC_INCS
+        ${PROJECT_SOURCE_DIR}/src
+        ${PROJECT_SOURCE_DIR}/src/ZKPs)
+
+set(CPPTEMPLATE_DEP_INCS
+        ${GMP_LIB_DIR})
 
 # Subdirectories
 # Compiled lib

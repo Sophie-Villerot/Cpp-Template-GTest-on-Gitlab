@@ -1,13 +1,13 @@
 #####################################################
 ## Top-level CMakeLists.txt to run the executables ##
 #####################################################
-cmake_minimum_required(VERSION 3.13)
-cmake_policy(VERSION 3.13)
+cmake_minimum_required(VERSION 3.22)
+cmake_policy(VERSION 3.22)
 
 # set the project name
-project(g-test
+project(gtestTemplate
         VERSION 0.1
-        DESCRIPTION "C++ Template project for GTest, using CMake, Sphinx"
+        DESCRIPTION "C++ Template project for GTest, using CMake"
         LANGUAGES CXX)
 
 list(APPEND CMAKE_MODULE_PATH "${CMAKE_CURRENT_LIST_DIR}/cmake"
@@ -23,18 +23,10 @@ if(CMAKE_PROJECT_NAME STREQUAL PROJECT_NAME)
     # add CMake build option
     set(CMAKE_BUILD_TYPE Debug)
 
-#[[    find_package(Botan 2.18.2
-            COMPONENTS
-            system_rng
-            argon2
-            sha3
-                 REQUIRED)]]
-
     # add compilation options
     add_compile_options(-Wall)
     add_compile_options(-Wextra)
     add_compile_options(-lstdc++)
-    #add_compile_options(/usr/include/botan-2 -lbotan-2)
     add_compile_options($ENV{MAKELESS_GCC_OPT})
     #add_compile_options(-pedantic-errors)
     #add_compile_options(-pedantic)

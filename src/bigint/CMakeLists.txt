@@ -2,12 +2,11 @@
 ## SUB-LEVEL CMakeLists.txt for bigint folder ##
 ################################################
 
-set(SRCS bigintmpz.cpp)
+set(SRCS bigIntMPZ.cpp)
 
-set(HEADERS bigint.hpp
-            bigintmpz.hpp)
+set(HEADERS bigInt.hpp
+	    bigIntMPZ.hpp)
 
 target_sources(${PROJECT_NAME}
-  PRIVATE ${SRCS}
-  PUBLIC  ${HEADERS}
-  )
+               PRIVATE ${SRCS}
+               PUBLIC  ${HEADERS})

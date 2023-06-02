@@ -12,12 +12,8 @@ Welcome to your library's documentation!
    :maxdepth: 1
    :caption: General presentation:
 
-   lib_doc/General/principles.rst
-
    lib_doc/General/getting-started.rst
    lib_doc/General/code-examples-demo.rst
-   lib_doc/General/glossary.rst
-   lib_doc/General/notations.rst
    lib_doc/General/references.rst
    
 .. toctree::

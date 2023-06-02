@@ -98,58 +98,6 @@ High-level concepts, e.g. related to architectural decisions of Tailed, or to th
 libraries, can also be made transparent and explicit in this part of the documentation.
 Descriptions of algorithms or equations, when hard to found in papers, can be also integrated here.
 
-Folder hierarchy
-----------------
-
-Inside the folder '/docs/sphinx/source', the following hierarchy can be found:
-
-.. code-block:: console
-
-    ├── conf.py
-    ├── contributor
-    │   ├── citing.rst
-    │   ├── conventions.rst
-    │   ├── dev_procedures.rst
-    │   ├── documentation
-    │   │   └── doc_guide.rst
-    │   └── gitlab
-    │       ├── git_guide.rst
-    │       └── protocols.rst
-    ├── images
-    │       └── various .png files
-    ├── index.rst
-    ├── lib_doc
-    │   ├── comm_module
-    │   │   ├── agents.rst
-    │   │   ├── interface_oat.rst
-    │   │   └── learning_modes.rst
-    │   ├── comm_modules.rst
-    │   ├── data.rst
-    │   ├── getting-started.rst
-    │   ├── glossary.rst
-    │   ├── mas
-    │   │   └── XXXXX_secret_sharing.rst
-    │   ├── principles.rst
-    │   ├── privacy_preserving_mecha
-    │   │   ├── dp.rst
-    │   │   └── randomness.rst
-    │   ├── smc_modules.rst
-    │   └── zkp
-    │       ├── preliminary
-    │       │   ├── definitions.rst
-    │       │   ├── notations.rst
-    │       │   ├── references.rst
-    │       │   └── zkp-principles.rst
-    │       └── proofs
-    │        ├── all-in-place.rst
-    │        ├── poly.rst
-    │        └── proof_of_XXXXX.rst
-    └── refs.bib
-
-The 'lib_doc' folder contains all .rst files related to explanations made for the users of APIs,
-while the 'contributor' folder holds all .rst files related to the contributor's manual
-(code conventions, mini-guide to use gitlab or document code).
-
 Restructured Text
 -----------------
 

@@ -16,12 +16,12 @@
 
 
 # -- Project information -----------------------------------------------------
-project = 'Tailed'
-copyright = '2021-2022, Magnet Team'
-author = 'Magnet Team'
+project = 'Cpp-Template-GTest-on-Gitlab'
+copyright = '2022-2023, Sophie Villerot'
+author = 'Sophie Villerot'
 
 # The full version, including alpha/beta/rc tags
-release = '0.1'
+release = '1.0'
 
 
 # -- General configuration ---------------------------------------------------
@@ -29,7 +29,7 @@ release = '0.1'
 # Add any Sphinx extension module names here, as strings. They can be
 # extensions coming with Sphinx (named 'sphinx.ext.*') or your custom
 # ones.
-extensions = ["breathe", "sphinxcontrib.bibtex", "sphinx.ext.todo"]
+extensions = ["breathe", "sphinx_rtd_theme", "sphinxcontrib.bibtex", "sphinx.ext.todo"]
 todo_include_todos = True
 
 # Add any paths that contain templates here, relative to this directory.
@@ -47,7 +47,7 @@ exclude_patterns = []
 # a list of builtin themes.
 #
 #html_theme = 'sphinx_rtd_theme'
-html_theme = 'alabaster'
+html_theme = 'sphinx_rtd_theme'
 
 # Add any paths that contain custom static files (such as style sheets) here,
 # relative to this directory. They are copied after the builtin static files,
@@ -65,7 +65,7 @@ html_show_sourcelink = False
 
 # Breathe Configuration
 breathe_projects = {
-    "Tailed": "../../doxygen/xml/",
+    "Cpp-Template-GTest-on-Gitlab": "../../doxygen/xml/",
 }
 
 # BibTeX variables

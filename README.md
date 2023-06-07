@@ -1,5 +1,17 @@
 # Cpp-Template-GTest-on-Gitlab
 
+## TODO
+
+ - [ ] Get rid of `/bigint` code requiring GMP library;
+ - [ ] Put github actions in place:
+   - [ ] For Gtest;
+   - [ ] For creating the documentation and generate associated pages;
+ - [ ] Document use of Gitlab CI;
+ - [ ] Expand EXPECT_* calls;
+ - [ ] Add mocks;
+ - [ ] Add Doxygen comments, integrate them in Sphinx doc through Breathe;
+ - [ ] Add Python+CPython support for CMake, w/ tests and documentation.
+
 ## GTest - HowTo with CMake
 
 ### Compiling the tests

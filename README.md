@@ -2,6 +2,7 @@
 
 ## TODO
 
+ - [ ] Fix compilation!
  - [ ] Get rid of `/bigint` code requiring GMP library;
  - [ ] Put github actions in place:
    - [ ] For Gtest;
@@ -9,6 +10,7 @@
  - [ ] Document use of Gitlab CI;
  - [ ] Expand EXPECT_* calls;
  - [ ] Add mocks;
+ - [ ] Add Valgrind tests memory in CMake and CI;
  - [ ] Add Doxygen comments, integrate them in Sphinx doc through Breathe;
  - [ ] Add Python+CPython support for CMake, w/ tests and documentation.
 
